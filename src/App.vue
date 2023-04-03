@@ -1,21 +1,15 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <BtnClick>Click me</BtnClick>
-    <TitleFirst></TitleFirst>
+    <!--  <img alt="Vue logo" src="./assets/logo.png" /> -->
+    <Button type="button">Click me</Button>
   </div>
 </template>
 
 <script>
-import BtnClick from "./components/Button";
-import TitleFirst from "./components/TitleFirst.vue";
-
+import { Button } from "./components/Button.vue";
 export default {
   name: "App",
-  components: {
-    BtnClick,
-    TitleFirst,
-  },
+  components: { Button },
 };
 </script>
 
