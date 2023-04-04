@@ -5,7 +5,10 @@
 </template>
 
 <script>
-export default { name: "ButtonClick", props: { type: String } };
+export default {
+  name: "ButtonClick",
+  props: { type: { type: String, default: "button" } },
+};
 </script>
 
 <style lang="scss" scoped></style>
