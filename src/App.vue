@@ -1,15 +1,26 @@
 <template>
   <div id="app">
-    <!--  <img alt="Vue logo" src="./assets/logo.png" /> -->
+    <h1>{{ title }}</h1>
     <ButtonClick>Click me</ButtonClick>
   </div>
 </template>
 
 <script>
+
 import ButtonClick from "./components/Button.vue";
+
 export default {
+
   name: "App",
   components: { ButtonClick },
+  data() {
+    return { amountOfClicks: 0 }
+  },
+  computed: {
+    title() {
+      return `Amount of clicks ${this.amountOfClicks}`
+    }
+  }
 };
 </script>
 
