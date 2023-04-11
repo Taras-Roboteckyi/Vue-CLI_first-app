@@ -1,5 +1,5 @@
 <template>
-  <button v-on="$listeners" v-bind:type="type" сlass="btn btn--outlined">
+  <button v-on="$listeners" v-bind:type="type" сlass="red-text btn--outlined">
     <slot></slot>
   </button>
 </template>
@@ -11,8 +11,8 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.btn {
+<style scoped>
+.red-text {
   display: inline-block;
   background: orange;
   border: none;
@@ -21,8 +21,6 @@ export default {
   padding: 12px;
   font-size: 16px;
 
-  &--outlined {
-    background: red;
-  }
+
 }
 </style>

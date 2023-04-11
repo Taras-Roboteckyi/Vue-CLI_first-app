@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div :id="$style.app">
     <h1>{{ title }}</h1>
     <ButtonClick @click="increment">Click me</ButtonClick>
   </div>
@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style>
+<style module>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
