@@ -2,6 +2,7 @@
   <div :id="$style.app">
     <h1>{{ title }}</h1>
     <ButtonClick @click="increment">Click me</ButtonClick>
+    <ButtonClick outlined>Not Click</ButtonClick>
   </div>
 </template>
 

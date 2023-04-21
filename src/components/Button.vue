@@ -1,6 +1,6 @@
 <template>
   <button v-on="$listeners" v-bind:type="type" :class="{
-    btn: true, 'btn--outlined': false
+    btn: true, 'btn--outlined': outlined //Застосували пропс для класу
   }">
     <slot></slot>
   </button>
@@ -28,7 +28,8 @@ export default {
   padding: 8px 15px;
 
   &--outlined {
-    background-color: blue;
+    background: blue;
+    margin-left: 10px;
   }
 
 
