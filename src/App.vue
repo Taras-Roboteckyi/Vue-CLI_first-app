@@ -3,17 +3,19 @@
     <h1>{{ title }}</h1>
     <ButtonClick @click="increment">Click me</ButtonClick>
     <ButtonClick outlined>Not Click</ButtonClick>
+    <DirectivesTest />
   </div>
 </template>
 
 <script>
 
 import ButtonClick from "./components/Button.vue";
+import DirectivesTest from "./components/DirectivesTest.vue";
 
 export default {
 
   name: "App",
-  components: { ButtonClick },
+  components: { ButtonClick, DirectivesTest },
   data() {
     return { amountOfClicks: 0 }
   },
