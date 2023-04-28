@@ -6,6 +6,11 @@
                 <li v-if="fruit === 'banana'" :key="fruit">{{ fruit }}</li>
             </template>
         </ul>
+        <ul>
+
+            <li v-for="(car, key) in cars" :key="key">{{ car }}</li>
+
+        </ul>
     </div>
 </template>
 
