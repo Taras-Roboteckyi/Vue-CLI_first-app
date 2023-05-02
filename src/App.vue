@@ -4,6 +4,7 @@
     <ButtonClick @click="increment">Click me</ButtonClick>
     <ButtonClick outlined>Not Click</ButtonClick>
     <DirectivesTest />
+    <StarRating :rating="4.5" />
   </div>
 </template>
 
@@ -11,11 +12,12 @@
 
 import ButtonClick from "./components/Button.vue";
 import DirectivesTest from "./components/DirectivesTest.vue";
+import StarRating from "./components/StarRating.vue";
 
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest },
+  components: { ButtonClick, DirectivesTest, StarRating },
   data() {
     return { amountOfClicks: 0 }
   },
