@@ -3,7 +3,7 @@
         <span v-for="index in starLimit" :key="index" class="star star--outlined "></span> <!-- v-for перебирає просто по
         індексу(числу) -->
 
-        <div class="star-rating__colored" :style="`width: ${ratingWidth}`">
+        <div class="star-rating__colored" :style="ratingWidthStyle">
             <span v-for="     index      in      starLimit     " :key="index" class="star star--colored"></span>
         </div>
     </div>
@@ -20,10 +20,10 @@ export default {
     },
     computed: {
         ratingWidth() {
-            return this.rating / this.starLimit * 100 + "%"
+            return this.rating / this.starLimit * 100
         },
         ratingWidthStyle() {
-            return `width: ${this.ratingWidth} %;`
+            return `width: ${this.ratingWidth}%;`
         }
     }
 }
