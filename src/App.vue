@@ -5,6 +5,7 @@
     <ButtonClick outlined>Not Click</ButtonClick>
     <DirectivesTest />
     <StarRating :rating="4.5" />
+    <ApartmentsList :items="apartments" />
   </div>
 </template>
 
@@ -13,13 +14,15 @@
 import ButtonClick from "./components/Button.vue";
 import DirectivesTest from "./components/DirectivesTest.vue";
 import StarRating from "./components/StarRating.vue";
+import ApartmentsList from "./components/apartment/ApartmentsList.vue";
+import apartments from "./components/apartment/apartments";
 
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest, StarRating },
+  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList },
   data() {
-    return { amountOfClicks: 0 }
+    return { apartments, amountOfClicks: 0 }
   },
   computed: {
     title() {
