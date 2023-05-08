@@ -5,7 +5,9 @@
     <ButtonClick outlined>Not Click</ButtonClick>
     <DirectivesTest />
     <StarRating :rating="4.5" />
-    <ApartmentsList :items="apartments" />
+    <ApartmentsList :items="apartments">
+      <template v-slot:title> New title</template>
+    </ApartmentsList>
   </div>
 </template>
 

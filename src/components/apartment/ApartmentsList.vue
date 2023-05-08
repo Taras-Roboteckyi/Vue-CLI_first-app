@@ -1,5 +1,6 @@
 <template>
     <Container>
+        <slot name="title"></slot>
         <div class="apartments-list">
             <ApartmentsItem v-for="{ id, descr, rating, imgUrl, price } in items" :key="id" :descr="descr" :rating="rating"
                 :price="price" :imgSrc="imgUrl" class="apartments-list__item" />
@@ -8,6 +9,7 @@
 </template>
 
 <script>
+
 import ApartmentsItem from './ApartmentsItem.vue';
 import Container from '../shared/Container.vue';
 
