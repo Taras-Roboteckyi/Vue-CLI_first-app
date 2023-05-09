@@ -6,7 +6,12 @@
     <DirectivesTest />
     <StarRating :rating="4.5" />
     <ApartmentsList :items="apartments">
-      <template v-slot:title> New title</template>
+      <template v-slot:title>New title</template>
+      <template v-slot:apartment="{ apartment }">
+
+        <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating"
+          :price="apartment.price" :imgSrc="apartment.imgUrl" />
+      </template>
     </ApartmentsList>
   </div>
 </template>
@@ -18,11 +23,12 @@ import DirectivesTest from "./components/DirectivesTest.vue";
 import StarRating from "./components/StarRating.vue";
 import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
+import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
 
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList },
+  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, },
   data() {
     return { apartments, amountOfClicks: 0 }
   },
