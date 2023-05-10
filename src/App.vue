@@ -6,11 +6,12 @@
     <DirectivesTest />
     <StarRating :rating="4.5" />
     <ApartmentsList :items="apartments">
+      <template v-slot:default>Default slot</template>
       <template v-slot:title>New title</template>
       <template v-slot:apartment="{ apartment }">
 
-        <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating"
-          :price="apartment.price" :imgSrc="apartment.imgUrl" />
+        <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating" :price="apartment.price"
+          :imgSrc="apartment.imgUrl" />
       </template>
     </ApartmentsList>
   </div>

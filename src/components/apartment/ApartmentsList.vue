@@ -1,10 +1,11 @@
 <template>
     <Container>
-        <slot name="title"></slot>
+        <slot name="title"></slot><!-- Іменований слот -->
+        <slot></slot><!-- Дефолтний слот -->
         <div class="apartments-list">
 
             <template v-for="apartment in items">
-                <slot name="apartment" v-bind:apartment="apartment"></slot>
+                <slot name="apartment" v-bind:apartment="apartment"></slot><!-- Scoped слот -->
             </template>
         </div>
     </Container>

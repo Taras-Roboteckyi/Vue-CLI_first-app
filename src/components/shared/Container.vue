@@ -1,6 +1,7 @@
 <template>
     <div class="container">
-        <slot></slot>
+        <slot>Default value</slot>
+        <!-- Значення по дефолту, якщо рендерити цей контейнер без вмісту тоді зарендериться дефолтне значення "Default value" -->
     </div>
 </template>
 
