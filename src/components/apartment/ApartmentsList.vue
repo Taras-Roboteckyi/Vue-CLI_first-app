@@ -1,9 +1,8 @@
 <template>
     <Container>
         <slot name="title"></slot><!-- Іменований слот -->
-        <slot></slot><!-- Дефолтний слот -->
-        <div class="apartments-list">
 
+        <div class="apartments-list">
             <template v-for="apartment in items">
                 <slot name="apartment" v-bind:apartment="apartment"></slot><!-- Scoped слот -->
             </template>
@@ -12,9 +11,7 @@
 </template>
 
 <script>
-
-
-import Container from '../shared/Container.vue';
+import Container from "../shared/Container.vue";
 
 export default {
     name: "AparttmentList",
@@ -22,10 +19,10 @@ export default {
     props: {
         items: {
             type: Array,
-            default: () => []
-        }
-    }
-}
+            default: () => [],
+        },
+    },
+};
 </script>
 
 <style lang="scss" scoped>
@@ -34,7 +31,5 @@ export default {
     flex-wrap: wrap;
     margin-left: -15px;
     margin-right: -15px;
-
-
 }
 </style>

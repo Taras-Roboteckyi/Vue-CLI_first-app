@@ -1,5 +1,6 @@
 <template>
-  <div class="apartments-item">
+  <div class="apartments-item" @click="log(2, $event)">
+    <!-- Додаєм подію click з іменем log і передаєм це значення в methods (1значення - індекс, 2значення - подія event) -->
     <div class="apartments-item__inner">
       <img :src="imgSrc" alt="" class="apartments-item__photo" />
       <div class="apartments-item__content">
@@ -41,6 +42,12 @@ export default {
       default: '',
     },
   },
+  methods: {
+    log(index, event) {
+      console.log(event)
+      console.log(index)
+    }
+  }
 }
 </script>
 
