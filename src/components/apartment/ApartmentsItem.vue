@@ -11,6 +11,7 @@
           <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
+        <a href="https://facebook.com" @click.prevent.stop="handleLinkClick">facebook</a>
       </div>
     </div>
   </div>
@@ -46,6 +47,9 @@ export default {
     log(index, event) {
       console.log(event)
       console.log(index)
+    },
+    handleLinkClick() {
+      console.log("facobook clicked")
     }
   }
 }
