@@ -11,7 +11,7 @@
       <template v-slot:apartment="{ apartment }">
 
         <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating" :price="apartment.price"
-          :imgSrc="apartment.imgUrl" />
+          :imgSrc="apartment.imgUrl" @click.native="handleItemClick" />
       </template>
     </ApartmentsList>
   </div>
@@ -41,6 +41,9 @@ export default {
   methods: {
     increment() {
       this.amountOfClicks += 1
+    },
+    handleItemClick() {
+      console.log("handle Click")
     }
   }
 };
