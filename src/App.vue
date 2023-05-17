@@ -5,6 +5,8 @@
     <ButtonClick outlined>Not Click</ButtonClick>
     <DirectivesTest />
     <StarRating :rating="4.5" />
+    <h2>{{ text }}</h2>
+    <input type="text" :value="text" @input="event => text = event.target.value">
     <ApartmentsList :items="apartments">
 
       <template v-slot:title>New title</template>
@@ -31,7 +33,7 @@ export default {
   name: "App",
   components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, },
   data() {
-    return { apartments, amountOfClicks: 0 }
+    return { apartments, amountOfClicks: 0, text: '' }
   },
   computed: {
     title() {
