@@ -6,7 +6,7 @@
     <DirectivesTest />
     <StarRating :rating="4.5" />
     <h2>{{ text }}</h2>
-    <input type="text" :value="text" @input="event => text = event.target.value">
+    <CustomInput v-model="text" />
     <ApartmentsList :items="apartments">
 
       <template v-slot:title>New title</template>
@@ -27,11 +27,12 @@ import StarRating from "./components/StarRating.vue";
 import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
 import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
+import CustomInput from "./components/shared/CustomInput.vue";
 
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, },
+  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, CustomInput },
   data() {
     return { apartments, amountOfClicks: 0, text: '' }
   },
