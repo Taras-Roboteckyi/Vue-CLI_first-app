@@ -6,6 +6,7 @@
     <DirectivesTest />
     <StarRating :rating="4.5" />
     <h2>{{ text }}</h2>
+    <CustomSelect :items="['name', 'label', 'salary']" />
     <CustomInput v-model="text" />
     <ApartmentsList :items="apartments">
 
@@ -28,11 +29,12 @@ import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
 import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
 import CustomInput from "./components/shared/CustomInput.vue";
+import CustomSelect from "./components/shared/CustomSelect.vue";
 
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, CustomInput },
+  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, CustomInput, CustomSelect },
   data() {
     return { apartments, amountOfClicks: 0, text: '' }
   },
