@@ -1,13 +1,15 @@
 <template>
-  <div :id="$style.app">
+  <div id="app">
     <h1>{{ title }}</h1>
     <ButtonClick @click="increment">Click me</ButtonClick>
     <ButtonClick outlined>Not Click</ButtonClick>
     <DirectivesTest />
     <StarRating :rating="4.5" />
-    <h2>{{ text }}</h2>
-    <CustomSelect :items="['name', 'label', 'salary']" />
-    <CustomInput v-model="text" />
+
+    <Container>
+      <ApartmentFilterForm class="apartments-filter" />
+    </Container>
+
     <ApartmentsList :items="apartments">
 
       <template v-slot:title>New title</template>
@@ -22,19 +24,20 @@
 
 <script>
 
-import ButtonClick from "./components/Button.vue";
+import ButtonClick from "./components/shared/Button.vue";
 import DirectivesTest from "./components/DirectivesTest.vue";
 import StarRating from "./components/StarRating.vue";
 import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
 import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
-import CustomInput from "./components/shared/CustomInput.vue";
-import CustomSelect from "./components/shared/CustomSelect.vue";
+import ApartmentFilterForm from "./components/apartment/ApartmentFilterForm.vue";
+import Container from "./components/shared/Container.vue";
+
 
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, CustomInput, CustomSelect },
+  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
   data() {
     return { apartments, amountOfClicks: 0, text: '' }
   },
@@ -54,9 +57,9 @@ export default {
 };
 </script>
 
-<style module>
+<style  lang="scss" scoped>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: Montserrat, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -72,5 +75,9 @@ export default {
   &::after {
     box-sizing: inherit;
   } */
+}
+
+.apartments-filter {
+  margin-bottom: 40px;
 }
 </style>
