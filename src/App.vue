@@ -7,12 +7,12 @@
     <StarRating :rating="4.5" />
 
     <Container>
-      <ApartmentFilterForm class="apartments-filter" />
+      <ApartmentFilterForm class="apartments-filter" @submit="logger" />
     </Container>
 
     <ApartmentsList :items="apartments">
 
-      <template v-slot:title>New title</template>
+
       <template v-slot:apartment="{ apartment }">
 
         <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating" :price="apartment.price"
@@ -52,6 +52,9 @@ export default {
     },
     handleItemClick() {
       console.log("handle Click")
+    },
+    logger(value) {
+      console.log("form value", value)
     }
   }
 };
@@ -68,14 +71,7 @@ export default {
 
 }
 
-* {
-  box-sizing: border-box;
 
-  /* &::before,
-  &::after {
-    box-sizing: inherit;
-  } */
-}
 
 .apartments-filter {
   margin-bottom: 40px;

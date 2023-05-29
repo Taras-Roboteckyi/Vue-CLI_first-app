@@ -1,8 +1,8 @@
 <template>
-    <form class="form">
-        <CustomSelect :items="['apple', 'kiwi', 'banana']" class="form-select" />
+    <form class="form" @submit.prevent="handleSubmit">
+        <CustomSelect :items="['apple', 'kiwi', 'banana']" class="form__select" />
         <CustomInput />
-        <SubmitButton class="form-submit">Selection of housing</SubmitButton>
+        <SubmitButton class="form__submit" type="submit">Selection of housing</SubmitButton>
     </form>
 </template>
 
@@ -12,7 +12,12 @@ import CustomSelect from '../shared/CustomSelect.vue';
 import SubmitButton from '../shared/Button.vue'
 
 export default {
-    components: { CustomSelect, CustomInput, SubmitButton }
+    components: { CustomSelect, CustomInput, SubmitButton },
+    methods: {
+        handleSubmit() {
+            this.$emit('submit', 'submit from')
+        }
+    }
 
 }
 </script>
@@ -21,11 +26,11 @@ export default {
 .form {
     display: flex;
 
-    &-select {
+    &__select {
         margin-right: 30px;
     }
 
-    &-submit {
+    &__submit {
         margin-left: auto;
     }
 }
