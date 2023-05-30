@@ -1,7 +1,7 @@
 <template>
     <form class="form" @submit.prevent="handleSubmit">
-        <CustomSelect :items="['apple', 'kiwi', 'banana']" class="form__select" />
-        <CustomInput />
+        <CustomSelect :items="cities" v-model="city" class="form__select" />
+        <CustomInput v-model="price" placeholder="Price from" />
         <SubmitButton class="form__submit" type="submit">Selection of housing</SubmitButton>
     </form>
 </template>
@@ -13,9 +13,21 @@ import SubmitButton from '../shared/Button.vue'
 
 export default {
     components: { CustomSelect, CustomInput, SubmitButton },
+    data() {
+        return {
+            price: '',
+            city: ''
+        }
+    },
+    computed: {
+        cities() {
+            return [{ value: '', label: 'City', selected: true }, "Kyiv", "Odesa", "Poltava", "Kharkiv", "Dnipro", "Lviv", "Kherson", "Mariupol",]
+
+        }
+    },
     methods: {
         handleSubmit() {
-            this.$emit('submit', 'submit from')
+            this.$emit('submit', { city: this.city, price: this.price, })
         }
     }
 

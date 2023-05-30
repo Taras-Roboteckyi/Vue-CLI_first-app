@@ -1,6 +1,7 @@
 <template>
     <select v-on="listeners" class="custom-select">
-        <option v-for="item in formatedItems" :key="item.value" :value="item.value">{{ item.label }}
+        <option v-for="item in formatedItems" :key="item.value" :value="item.value" :selected="item.selected">{{ item.label
+        }}
         </option>
     </select>
 </template>
