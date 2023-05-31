@@ -1,20 +1,12 @@
 <template>
   <div id="app">
-    <h1>{{ title }}</h1>
-    <ButtonClick @click="increment">Click me</ButtonClick>
-    <ButtonClick outlined>Not Click</ButtonClick>
-    <DirectivesTest />
-    <StarRating :rating="4.5" />
 
     <Container>
       <ApartmentFilterForm class="apartments-filter" @submit="logger" />
     </Container>
 
     <ApartmentsList :items="apartments">
-
-
       <template v-slot:apartment="{ apartment }">
-
         <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating" :price="apartment.price"
           :imgSrc="apartment.imgUrl" @click.native="handleItemClick" />
       </template>
@@ -24,9 +16,9 @@
 
 <script>
 
-import ButtonClick from "./components/shared/Button.vue";
-import DirectivesTest from "./components/DirectivesTest.vue";
-import StarRating from "./components/StarRating.vue";
+
+
+
 import ApartmentsList from "./components/apartment/ApartmentsList.vue";
 import apartments from "./components/apartment/apartments";
 import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
@@ -37,7 +29,7 @@ import Container from "./components/shared/Container.vue";
 export default {
 
   name: "App",
-  components: { ButtonClick, DirectivesTest, StarRating, ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
+  components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
   data() {
     return { apartments, amountOfClicks: 0, text: '' }
   },
@@ -47,9 +39,7 @@ export default {
     }
   },
   methods: {
-    increment() {
-      this.amountOfClicks += 1
-    },
+
     handleItemClick() {
       console.log("handle Click")
     },
