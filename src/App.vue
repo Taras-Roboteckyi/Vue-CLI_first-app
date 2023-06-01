@@ -31,7 +31,11 @@ export default {
   name: "App",
   components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
   data() {
-    return { apartments, amountOfClicks: 0, text: '' }
+    return {
+      apartments, text: '', filters: {
+        city: '', price: 0
+      }
+    }
   },
   computed: {
     title() {
@@ -43,8 +47,23 @@ export default {
     handleItemClick() {
       console.log("handle Click")
     },
-    logger(value) {
-      console.log("form value", value)
+    filter({ city, price }) {
+      this.filters.city = city
+      this.filters.price = price
+    },
+    filterByCityName(apartments) {
+      if (!this.filters.city) return apartments  //Перевірка чи є пустий рядок, якщо є то повертаєм apartments
+
+      return apartments.filter(apartment => {
+        return apartment.location.city === this.filters.city
+      })
+    },
+    filterByPrice(apartments) {
+      if (!this.filters.price) return apartments  //Перевірка чи є пустий рядок, якщо є то повертаєм apartments
+
+      return apartments.filter(apartment => {
+        return apartment.price === this.filters.price
+      })
     }
   }
 };
