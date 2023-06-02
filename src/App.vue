@@ -2,10 +2,12 @@
   <div id="app">
 
     <Container>
-      <ApartmentFilterForm class="apartments-filter" @submit="logger" />
+      <ApartmentFilterForm class="apartments-filter" @submit="filter" />
     </Container>
+    <p v-if="!filteredApartments.length">Nothing found</p>
+    <!-- //Дивиться якщо довжина не менше 0 тоді гасить компонент// -->
 
-    <ApartmentsList :items="apartments">
+    <ApartmentsList v-else :items="filteredApartments">
       <template v-slot:apartment="{ apartment }">
         <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating" :price="apartment.price"
           :imgSrc="apartment.imgUrl" @click.native="handleItemClick" />
@@ -38,15 +40,13 @@ export default {
     }
   },
   computed: {
-    title() {
-      return `Amount of clicks ${this.amountOfClicks}`
+    filteredApartments() {
+      return this.filterByPrice(this.filterByCityName(this.apartments))
     }
   },
   methods: {
 
-    handleItemClick() {
-      console.log("handle Click")
-    },
+
     filter({ city, price }) {
       this.filters.city = city
       this.filters.price = price
@@ -62,7 +62,7 @@ export default {
       if (!this.filters.price) return apartments  //Перевірка чи є пустий рядок, якщо є то повертаєм apartments
 
       return apartments.filter(apartment => {
-        return apartment.price === this.filters.price
+        return apartment.price >= this.filters.price
       })
     }
   }
