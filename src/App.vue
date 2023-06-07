@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="content">
-
+      <AppHeader />
       <Container>
         <ApartmentFilterForm class="apartments-filter" @submit="filter" />
       </Container>
@@ -31,13 +31,14 @@ import apartments from "./components/apartment/apartments";
 import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
 import ApartmentFilterForm from "./components/apartment/ApartmentFilterForm.vue";
 import Container from "./components/shared/Container.vue";
+import AppHeader from "./components/Header.vue"
 import AppFooter from "./components/Footer.vue"
 
 
 export default {
 
   name: "App",
-  components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container, AppFooter },
+  components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container, AppHeader, AppFooter },
   data() {
     return {
       apartments, text: '', filters: {
@@ -87,6 +88,7 @@ export default {
 
 .content {
   flex-grow: 1;
+  padding-top: 120px;
 }
 
 .apartments-filter {

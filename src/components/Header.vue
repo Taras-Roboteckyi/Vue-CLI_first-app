@@ -1,17 +1,18 @@
 <template>
     <header class="header">
         <Container>
-
+            <Logo />
         </Container>
     </header>
 </template>
 
 <script>
 import Container from './shared/Container.vue';
+import Logo from './Logo.vue'
 
 export default {
     name: 'HeaderApp',
-    components: { Container }
+    components: { Container, Logo }
 }
 </script>
 
@@ -19,6 +20,10 @@ export default {
 @import '../assets/scss/variables';
 
 .header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
     background: $secondary-color;
     padding: 16px 0;
 }
