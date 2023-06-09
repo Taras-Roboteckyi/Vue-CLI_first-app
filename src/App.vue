@@ -3,6 +3,7 @@
     <div class="content">
       <AppHeader />
       <Container>
+        <router-view></router-view><!-- //Додаєм роутер до нашого App// -->
         <ApartmentFilterForm class="apartments-filter" @submit="filter" />
       </Container>
       <Container>
