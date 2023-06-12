@@ -4,7 +4,7 @@ import Bar from "./pages/BarApp";
 import Foo from "./pages/FooApp";
 import VueRouter from "vue-router";
 
-//Щоб роутер працював потрібно на основі компонентів створити масив роутерів////
+//Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
   {
     path: "/Foo", //Задаєм шляхи які ми хочеш щоб переходило по сторінці///
@@ -16,6 +16,6 @@ const routes = [
   },
 ];
 
-const router = new VueRouter({ routes });
+const router = new VueRouter({ routes, mode: "history" });
 
 export default router;
