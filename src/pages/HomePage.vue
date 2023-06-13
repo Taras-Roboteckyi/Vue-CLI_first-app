@@ -23,19 +23,18 @@
 
 
 
-import ApartmentsList from "./components/apartment/ApartmentsList.vue";
-import apartments from "./components/apartment/apartments";
-import ApartmentsItem from "./components/apartment/ApartmentsItem.vue"
-import ApartmentFilterForm from "./components/apartment/ApartmentFilterForm.vue";
-import Container from "./components/shared/Container.vue";
-import AppHeader from "./components/Header.vue"
-import AppFooter from "./components/Footer.vue"
+import ApartmentsList from "../components/apartment/ApartmentsList.vue";
+import apartments from "../components/apartment/apartments";
+import ApartmentsItem from "../components/apartment/ApartmentsItem.vue"
+import ApartmentFilterForm from "../components/apartment/ApartmentFilterForm.vue";
+import Container from "../components/shared/Container.vue";
+
 
 
 export default {
 
     name: "App",
-    components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container, AppHeader, AppFooter },
+    components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
     data() {
         return {
             apartments, text: '', filters: {

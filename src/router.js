@@ -1,8 +1,10 @@
 //Тут прописуються всі настройки роутінга///////
+import VueRouter from "vue-router";
 
 import Bar from "./pages/BarApp";
 import Foo from "./pages/FooApp";
-import VueRouter from "vue-router";
+import HomePage from "./pages/HomePage";
+import ApartmentPage from "./pages/Apartment";
 
 //Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
@@ -13,6 +15,14 @@ const routes = [
   {
     path: "/Bar", //Задаєм шляхи які ми хочеш щоб переходило по сторінці///
     component: Bar,
+  },
+  {
+    path: "/", //Задаєм кореневий шлях, щоб переходило по сторінці///
+    component: HomePage,
+  },
+  {
+    path: "/apartment", //Задаєм кореневий шлях, щоб переходило по сторінці///
+    component: ApartmentPage,
   },
 ];
 
