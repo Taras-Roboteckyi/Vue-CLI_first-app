@@ -19,10 +19,12 @@ const routes = [
   {
     path: "/", //Задаєм кореневий шлях, щоб переходило по сторінці///
     component: HomePage,
+    name: "homepage",
   },
   {
-    path: "/apartment", //Задаєм кореневий шлях, щоб переходило по сторінці///
+    path: "/apartment",
     component: ApartmentPage,
+    name: "apartment", //Система nameів, для того щоб дати імя кожному роуту///
   },
 ];
 

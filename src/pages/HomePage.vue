@@ -11,7 +11,7 @@
             <ApartmentsList v-else :items="filteredApartments">
                 <template v-slot:apartment="{ apartment }">
                     <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating"
-                        :price="apartment.price" :imgSrc="apartment.imgUrl" @click.native="handleItemClick" />
+                        :price="apartment.price" :imgSrc="apartment.imgUrl" />
                 </template>
             </ApartmentsList>
         </Container>
@@ -25,7 +25,7 @@
 
 import ApartmentsList from "../components/apartment/ApartmentsList.vue";
 import apartments from "../components/apartment/apartments";
-import ApartmentsItem from "../components/apartment/ApartmentsItem.vue"
+import ApartmentsItem from "../components/apartment/ApartmentsItem"
 import ApartmentFilterForm from "../components/apartment/ApartmentFilterForm.vue";
 import Container from "../components/shared/Container.vue";
 

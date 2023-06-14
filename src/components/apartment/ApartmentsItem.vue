@@ -11,8 +11,9 @@
           <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
-        <a href="https://facebook.com" @click.prevent.stop="handleLinkClick">facebook</a>
+        <router-link to="/apartment" class="apartments-item__link">Click me</router-link>
       </div>
+
     </div>
   </div>
 </template>
