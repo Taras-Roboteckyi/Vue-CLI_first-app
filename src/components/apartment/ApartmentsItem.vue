@@ -11,7 +11,7 @@
           <StarRating :rating="rating" />
         </div>
         <div class="apartments-item__price">UAH {{ price }}</div>
-        <router-link to="/apartment" class="apartments-item__link">Click me</router-link>
+        <router-link :to="{ name: 'apartment', params: { id: 22 } }" class="apartments-item__link"></router-link>
       </div>
 
     </div>
@@ -105,6 +105,15 @@ export default {
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+
+  &__link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
   }
 }
 </style>
