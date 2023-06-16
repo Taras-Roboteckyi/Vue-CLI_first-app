@@ -22,7 +22,7 @@ const routes = [
     name: "homepage",
   },
   {
-    path: "/apartment/:id",
+    path: "/apartment/:id", //створюєм динамічний маршрут //
     component: ApartmentPage,
     name: "apartment", //Система nameів, для того щоб дати імя кожному роуту///
   },

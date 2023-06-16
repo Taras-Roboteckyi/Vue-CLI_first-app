@@ -10,8 +10,8 @@
 
             <ApartmentsList v-else :items="filteredApartments">
                 <template v-slot:apartment="{ apartment }">
-                    <ApartmentsItem :key="apartment.id" :descr="apartment.descr" :rating="apartment.rating"
-                        :price="apartment.price" :imgSrc="apartment.imgUrl" />
+                    <ApartmentsItem :key="apartment.id" :id="apartment.id" :descr="apartment.descr"
+                        :rating="apartment.rating" :price="apartment.price" :imgSrc="apartment.imgUrl" />
                 </template>
             </ApartmentsList>
         </Container>
