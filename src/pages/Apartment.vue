@@ -15,7 +15,7 @@ export default {
     components: { Container },
     ///Додаєм хук mounted///
     mounted() {
-        console.log(this.$route.params.id),//Так можна достукатися до параметрів роута -name,id і т.д, а також їх передати///
+        console.log(this.$route.params.id),//Так можна достукатися до параметрів роута -name,id,query і т.д, а також їх передати///
             console.log(this.$route.query.name)
     }
 }
