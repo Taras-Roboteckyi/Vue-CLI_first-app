@@ -5,6 +5,7 @@ import Bar from "./pages/BarApp";
 import Foo from "./pages/FooApp";
 import HomePage from "./pages/HomePage";
 import ApartmentPage from "./pages/Apartment";
+import ErrorPage from "./pages/ErrorPage";
 
 //Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
@@ -25,6 +26,11 @@ const routes = [
     path: "/apartment/:id", //створюєм динамічний маршрут //
     component: ApartmentPage,
     name: "apartment", //Система nameів, для того щоб дати імя кожному роуту///
+  },
+  {
+    path: "*", //такий роутер підходить до любого шляху і спрацьовує коли не відпрацював ні один із цих верхніх роутів//
+    component: ErrorPage,
+    name: "error-page",
   },
 ];
 

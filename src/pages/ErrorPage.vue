@@ -7,8 +7,15 @@
 
 <script>
 export default {
-
+    name: 'ErrorPage'
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.error {
+    &__title {
+        font-size: 60px;
+        text-align: center;
+    }
+}
+</style>
