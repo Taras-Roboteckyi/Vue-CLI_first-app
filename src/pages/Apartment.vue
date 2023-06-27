@@ -1,7 +1,8 @@
 <template>
     <main>
         <Container>
-            <h1>Apartment Page</h1>
+            <ApartmentMainInfo :apartment="apartment" />
+            <!-- //Передаєм apartment обовязково щоб передати дані з computed в props -->
         </Container>
 
     </main>
@@ -10,10 +11,11 @@
 <script>
 import Container from '../components/shared/Container'
 import apartments from "../components/apartment/apartments";
+import ApartmentMainInfo from "../components/apartment/ApartmentMainInfo.vue"
 
 export default {
     name: 'ApartmentPage',
-    components: { Container },
+    components: { Container, ApartmentMainInfo },
     computed: {
         apartment() {
             return apartments.find(apartment => apartment.id === this.$route.params.id)//Шукаєм необхідний id серед апартаментів і підставляєм його//
