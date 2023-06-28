@@ -1,5 +1,5 @@
 <template>
-    <main>
+    <main class="apartment-page">
         <Container>
             <ApartmentMainInfo :apartment="apartment" />
             <!-- //Передаєм apartment обовязково щоб передати дані з computed в props -->
@@ -31,4 +31,8 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.apartment-page {
+    padding-bottom: 55px;
+}
+</style>

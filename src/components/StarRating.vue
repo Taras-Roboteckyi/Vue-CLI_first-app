@@ -4,7 +4,7 @@
         індексу(числу) -->
 
         <div class="star-rating__colored" :style="ratingWidthStyle">
-            <span v-for="     index      in      starLimit     " :key="index" class="star star--colored"></span>
+            <span v-for="index in  starLimit " :key="index" class="star star--colored"></span>
         </div>
     </div>
 </template>
