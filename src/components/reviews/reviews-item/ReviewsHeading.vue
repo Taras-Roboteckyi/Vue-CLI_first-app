@@ -1,6 +1,6 @@
 <template>
     <div class="reviews-heading">
-        <!-- avatar -->
+        <Avatar />
         <div class="reviews-heading__content">
             <span class="reviews-heading__author">{{ author }}</span>
             <Rating :rating="rating" />
@@ -10,10 +10,11 @@
 
 <script>
 import Rating from "../../StarRating.vue"
+import Avatar from './ReviewsAvatar.vue'
 
 export default {
     name: 'ReviewsHeading',
-    components: { Rating },
+    components: { Rating, Avatar },
     props: {
         author: {
             type: String,
