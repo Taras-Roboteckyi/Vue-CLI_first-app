@@ -3,8 +3,12 @@
         <Container>
             <div class="apartment-page__content">
                 <ApartmentMainInfo :apartment="apartment" />
-                <!-- //Передаєм apartment обовязково щоб передати дані з computed в props -->
-                <ApartmentsOwner class="apartment-page__owner" :owner="apartment.owner" />
+                <div class="apartment-page__additional-info">
+                    <!-- //Передаєм apartment обовязково щоб передати дані з computed в props -->
+                    <ApartmentsOwner class="apartment-page__owner" :owner="apartment.owner" />
+                    <Reviews :reviews="reviewsList" />
+                </div>
+
             </div>
         </Container>
 
@@ -16,11 +20,16 @@ import Container from '../components/shared/Container'
 import apartments from "../components/apartment/apartments";
 import ApartmentMainInfo from "../components/apartment/ApartmentMainInfo.vue"
 import ApartmentsOwner from "../components/apartment/ApartmentsOwner.vue"
+import Reviews from '../components/reviews'
+import ReviewsData from "../components/reviews/reviews.json"
 
 export default {
     name: 'ApartmentPage',
-    components: { Container, ApartmentMainInfo, ApartmentsOwner },
+    components: { Container, ApartmentMainInfo, ApartmentsOwner, Reviews },
     computed: {
+        reviewsList() {
+            return ReviewsData
+        },
         apartment() {
             return apartments.find(apartment => apartment.id === this.$route.params.id)//Шукаєм необхідний id серед апартаментів і підставляєм його//
         }
@@ -47,6 +56,13 @@ export default {
     &__owner {
         min-width: 350px;
         margin-left: 30px;
+    }
+
+    &__additional-info {
+        margin-left: 30px;
+        max-width: 350px;
+        flex-grow: 0;
+        flex-shrink: 1;
     }
 
 }
