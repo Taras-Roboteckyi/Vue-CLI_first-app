@@ -53,10 +53,10 @@ export default {
         align-items: flex-start;
     }
 
-    &__owner {
+    /* &__owner {
         min-width: 350px;
         margin-left: 30px;
-    }
+    } */
 
     &__additional-info {
         margin-left: 30px;
