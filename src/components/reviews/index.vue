@@ -7,8 +7,8 @@
                 <Rating :rating="totalRating" />
             </div>
         </div>
-        <ReviewsItem v-for="review in reviews" :key="review.author" :review="review" />
-        <button class="reviews__show-more">Read more...</button>
+        <ReviewsItem v-for="review in currentReviews" :key="review.author" :review="review" />
+        <button @click="toggleReviews" class="reviews__show-more">{{ buttonText }}</button>
     </section>
 </template>
 
@@ -25,6 +25,11 @@ export default {
             required: true
         }
     },
+    data() {
+        return {
+            reviewsLimit: 2
+        }
+    },
     computed: {
         totalRating() {
             const total = this.reviews.reduce((acc, review) => acc + review.rating, 0)
@@ -32,6 +37,22 @@ export default {
         },
         amountOfReviews() {
             return this.reviews.length
+        },
+        currentReviews() {
+            return this.reviews.slice(0, this.reviewsLimit)
+        },
+        buttonText() {
+
+            return this.reviewsLimit === this.reviews.length ? 'Roll up' : 'Read more...'
+        }
+    },
+    methods: {
+        toggleReviews() {
+            if (this.reviewsLimit === this.reviews.length) {
+                this.reviewsLimit = 2
+                return
+            }
+            this.reviewsLimit = this.reviews.length
         }
     }
 }
