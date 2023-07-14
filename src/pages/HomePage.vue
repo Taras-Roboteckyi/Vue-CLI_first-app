@@ -24,11 +24,11 @@
 
 
 import ApartmentsList from "../components/apartment/ApartmentsList.vue";
-import apartments from "../components/apartment/apartments";
+
 import ApartmentsItem from "../components/apartment/ApartmentsItem"
 import ApartmentFilterForm from "../components/apartment/ApartmentFilterForm.vue";
 import Container from "../components/shared/Container.vue";
-
+import { getApartmentsList } from "@/services/apartments_service";
 
 
 export default {
@@ -37,7 +37,9 @@ export default {
     components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
     data() {
         return {
-            apartments, text: '', filters: {
+            apartments: [],
+            text: '',
+            filters: {
                 city: '', price: 0
             }
         }
@@ -47,6 +49,16 @@ export default {
             return this.filterByPrice(this.filterByCityName(this.apartments))
         }
     },
+    //////////////////////Хук для запитів на бек/////////////////////
+    async created() {
+        try {
+            const { data } = await getApartmentsList()
+            this.apartments = data
+        } catch (error) {
+            console.error(error)
+        }
+    },
+
     methods: {
 
 
