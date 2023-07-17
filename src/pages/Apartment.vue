@@ -1,7 +1,7 @@
 <template>
     <main class="apartment-page">
         <Container>
-            <div class="apartment-page__content">
+            <div v-if="apartment" class="apartment-page__content">
                 <ApartmentMainInfo :apartment="apartment" />
                 <div class="apartment-page__additional-info">
                     <!-- //Передаєм apartment обовязково щоб передати дані з computed в props -->
@@ -17,21 +17,38 @@
 
 <script>
 import Container from '../components/shared/Container'
-import apartments from "../components/apartment/apartments";
+
 import ApartmentMainInfo from "../components/apartment/ApartmentMainInfo.vue"
 import ApartmentsOwner from "../components/apartment/ApartmentsOwner.vue"
 import Reviews from '../components/reviews'
 import ReviewsData from "../components/reviews/reviews.json"
+import { getApartmentsById } from '@/services/apartments_service';
 
 export default {
     name: 'ApartmentPage',
     components: { Container, ApartmentMainInfo, ApartmentsOwner, Reviews },
+    data() {
+        return {
+            apartment: null
+        }
+    },
     computed: {
         reviewsList() {
             return ReviewsData
         },
-        apartment() {
+        /* apartment() {
             return apartments.find(apartment => apartment.id === this.$route.params.id)//Шукаєм необхідний id серед апартаментів і підставляєм його//
+        } */
+    },
+
+    //////////////////////Хук для запитів на бек/////////////////////
+    async created() {
+        try {
+            const { id } = this.$route.params
+            const { data } = await getApartmentsById(id) //Шукаєм необхідний id серед апартаментів і підставляєм його//
+            this.apartment = data
+        } catch (error) {
+            console.error(error)
         }
     },
     ///Додаєм хук mounted///

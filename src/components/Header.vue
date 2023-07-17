@@ -1,7 +1,10 @@
 <template>
     <header class="header">
         <Container>
-            <Logo />
+            <router-link to="/"><!-- //Перенаправляє на головну сторінку -->
+                <Logo />
+            </router-link>
+
         </Container>
     </header>
 </template>
