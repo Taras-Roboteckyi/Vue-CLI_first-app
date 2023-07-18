@@ -1,16 +1,46 @@
 <template>
-    <input v-on="listeners" class="custom-input">
+    <div class="wrapper-input">
+        <input v-on="listeners" class="custom-input">
+        <span v-if="!isValid" class="custom-input__error">{{ errorMessage }}</span>
+    </div>
 </template>
 
 <script>
 export default {
     name: 'CustomInput',
+    data() {
+        return { isValid: true }
+    },
+    props: {
+        value: {
+            type: String,
+            default: ''
+        },
+        errorMessage: {
+            type: String,
+            default: ''
+        },
+        rules: {
+            type: Array,
+            default: () => []   //Завжди дані силочного типу прописуєм через функцію
+        }
+    },
     computed: {
         listeners() {
             return {
                 ...this.$listeners,
                 input: event => this.$emit('input', event.target.value)
             }
+        }
+    },
+    watch: {
+        value(value) {
+            this.validate(value)
+        }
+    },
+    methods: {
+        validate(value) {
+            this.isValid = this.rules.every(rule => rule(value))
         }
     }
 }
