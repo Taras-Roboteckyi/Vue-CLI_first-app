@@ -36,6 +36,7 @@ export default {
     watch: {
         value(value) {
             this.validate(value)
+            console.log(value) //В консолі відобрається  значення при ввденні в інпуті !Круто!!!
         }
     },
     methods: {
@@ -61,6 +62,20 @@ export default {
 
     &::placeholder {
         color: inherit
+    }
+
+    &--error {
+        border-color: red;
+    }
+
+    &__error {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 100%;
+        font-size: 12px;
+        color: red;
+        line-height: 1.3;
     }
 }
 </style>
