@@ -1,7 +1,8 @@
 <template>
     <form class="form" @submit.prevent="handleSubmit">
         <CustomSelect :items="cities" v-model="city" class="form__select" />
-        <CustomInput v-model="price" placeholder="Price from" error-message="Мust not be empty" :rules="[(val) => !!val]" />
+        <CustomInput v-model="price" type="number" placeholder="Price from" error-message="Мust not be empty"
+            :rules="[(val) => !!val]" />
         <SubmitButton class="form__submit" type="submit">Selection of housing</SubmitButton>
     </form>
 </template>

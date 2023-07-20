@@ -1,6 +1,8 @@
 <template>
     <div class="wrapper-input">
-        <input v-on="listeners" class="custom-input">
+        <input v-on="listeners" v-bind="$attrs" class="custom-input"
+            :class="!isValid && 'custom-input--error'"><!-- //Можливість байндити клас і
+        достукатися до нього...КРУТО!!!             v-bind="$attrs" - відповідає за всі атрибути які будуть передаватися компоненту-->
         <span v-if="!isValid" class="custom-input__error">{{ errorMessage }}</span>
     </div>
 </template>
@@ -11,6 +13,7 @@ export default {
     data() {
         return { isValid: true }
     },
+    inheritAttrs: false,/* Заберає привязку від батьківського елемента, так як vue всі атрибути привязує до батьківського елемента */
     props: {
         value: {
             type: String,
@@ -49,6 +52,10 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../assets/scss/variables';
+
+.wrapper-input {
+    position: relative;
+}
 
 .custom-input {
     min-height: 40px;
