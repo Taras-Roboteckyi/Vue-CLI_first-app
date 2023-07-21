@@ -1,8 +1,8 @@
 <template>
     <form class="form" @submit.prevent="handleSubmit">
         <CustomSelect :items="cities" v-model="city" class="form__select" />
-        <CustomInput v-model="price" type="number" placeholder="Price from" error-message="Мust not be empty"
-            :rules="[(val) => !!val]" />
+        <CustomInput v-model="price" placeholder="Price from" error-message="Мust not be empty" :rules="rules" />
+        <!--  :rules="[(val) => !!val]" - перевіряє чи пусте поле чи не пусте-->
         <SubmitButton class="form__submit" type="submit">Selection of housing</SubmitButton>
     </form>
 </template>
@@ -11,6 +11,7 @@
 import CustomInput from '../shared/CustomInput.vue';
 import CustomSelect from '../shared/CustomSelect.vue';
 import SubmitButton from '../shared/Button.vue'
+import { isRequired, charLimit } from '@/utils/validationRules';
 
 export default {
     components: { CustomSelect, CustomInput, SubmitButton },
@@ -21,6 +22,9 @@ export default {
         }
     },
     computed: {
+        rules() {
+            return [isRequired, charLimit(10)]
+        },
         cities() {
             return [{ value: '', label: 'City', selected: true }, "Kyiv", "Odesa", "Poltava", "Kharkiv", "Dnipro", "Lviv", "Kherson", "Mariupol",]
 

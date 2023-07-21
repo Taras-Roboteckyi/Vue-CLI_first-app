@@ -3,7 +3,7 @@
         <input v-on="listeners" v-bind="$attrs" class="custom-input"
             :class="!isValid && 'custom-input--error'"><!-- //Можливість байндити клас і
         достукатися до нього...КРУТО!!!             v-bind="$attrs" - відповідає за всі атрибути які будуть передаватися компоненту-->
-        <span v-if="!isValid" class="custom-input__error">{{ errorMessage }}</span>
+        <span v-if="!isValid" class="custom-input__error">{{ error }}</span>
     </div>
 </template>
 
@@ -11,7 +11,10 @@
 export default {
     name: 'CustomInput',
     data() {
-        return { isValid: true }
+        return {
+            isValid: true,
+            error: ''
+        }
     },
     inheritAttrs: false,/* Заберає привязку від батьківського елемента, так як vue всі атрибути привязує до батьківського елемента */
     props: {
@@ -44,7 +47,13 @@ export default {
     },
     methods: {
         validate(value) {
-            this.isValid = this.rules.every(rule => rule(value))
+            this.isValid = this.rules.every(rule => {
+                const { hasPassed, message } = rule(value)
+                if (!hasPassed) {
+                    this.error = message || this.errorMessage
+                }
+                return hasPassed
+            })
         }
     }
 }
