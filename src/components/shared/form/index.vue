@@ -1,12 +1,25 @@
 <template>
-    <div>
-
-    </div>
+    <form>
+        <slot></slot>
+    </form>
 </template>
 
 <script>
 export default {
-    name: 'FormComponent'
+    name: 'FormComponent',
+    /* provide викор. для передачі даних батькові а потім інжектить в кожний інпут і можна маніпулювати з методами цього компонента */
+    provide() {
+        return { form: this }
+    },
+    data() {
+        return {
+            inputs: []
+        }
+    },
+    methods: {
+        registerInput(input) { this.inputs.push(input) },/* Додаєм інтпут */
+        unRegisterInput(input) { this.inputs.filter(item => item !== input) }/* Видаляєм непотрібний інтпут */
+    }
 }
 </script>
 
