@@ -16,6 +16,7 @@ export default {
             error: ''
         }
     },
+    inject: ['form'],/* Масив ключів які булт визначені в provide. Тепер в інпуті буде доступна силка на компонент форми. */
     inheritAttrs: false,/* Заберає привязку від батьківського елемента, так як vue всі атрибути привязує до батьківського елемента */
     props: {
         value: {
@@ -40,10 +41,23 @@ export default {
         }
     },
     watch: {
-        value(value) {
-            this.validate(value)
-            console.log(value) //В консолі відобрається  значення при ввденні в інпуті !Круто!!!
+        value() {
+            this.validate()
+            /* console.log(value) */ //В консолі відобрається  значення при ввденні в інпуті !Круто!!!
         }
+    },
+    mounted() {
+        /* Зробим просту перевірку чи є форма */
+        if (!this.form) return
+
+        this.form.registerInput(this)/* Реєструєм інпут в середині форми */
+    },
+    beforeDestroy() {
+        /* Памятаєм про утечку памяті тому робим  beforeDestroy*/
+        /* Зробим просту перевірку чи є форма */
+        if (!this.form) return
+
+        this.form.unRegisterInput(this)/* Реєструєм інпут в середині форми */
     },
     methods: {
         validate(value) {

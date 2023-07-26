@@ -17,7 +17,7 @@ export default {
         }
     },
     methods: {
-        registerInput(input) { this.inputs.push(input) },/* Додаєм інтпут */
+        registerInput(input) { this.inputs.push(input) },/* Додавлєм інтпут */
         unRegisterInput(input) { this.inputs.filter(item => item !== input) }/* Видаляєм непотрібний інтпут */
     }
 }
