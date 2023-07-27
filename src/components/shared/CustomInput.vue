@@ -68,7 +68,10 @@ export default {
                 }
                 return hasPassed
             })
-        }
+        },
+        reset() {
+            this.$emit('input', '')
+        }/* Метод буде емітити подію інпут з пустим значенням */
     }
 }
 </script>
