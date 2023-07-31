@@ -25,7 +25,11 @@ export default {
     },
     computed: {
         rules() {
-            return emailValidation, passwordValidation, isRequired
+            return {
+                emailValidation,
+                passwordValidation,
+                isRequired
+            }
         },
         emailRules() {
             return [this.rules.isRequired, this.rules.emailValidation]
