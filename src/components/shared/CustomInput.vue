@@ -60,14 +60,18 @@ export default {
         this.form.unRegisterInput(this)/* Реєструєм інпут в середині форми */
     },
     methods: {
-        validate(value) {
-            this.isValid = this.rules.every(rule => {
-                const { hasPassed, message } = rule(value)
+        validate() {
+            this.isValid = this.rules.every((rule) => {
+                const { hasPassed, message } = rule(this.value);
+
                 if (!hasPassed) {
-                    this.error = message || this.errorMessage
+                    this.error = message || this.errorMessage;
                 }
-                return hasPassed
-            })
+
+                return hasPassed;
+            });
+
+            return this.isValid;
         },
         reset() {
             this.$emit('input', '')
