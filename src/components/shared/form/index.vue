@@ -18,10 +18,18 @@ export default {
     },
     methods: {
         registerInput(input) { this.inputs.push(input) },/* Додавлєм інтпут */
+
         unRegisterInput(input) { this.inputs.filter(item => item !== input) },/* Видаляєм непотрібний інтпут */
+
         validate() {
-            return this.inputs.every(input => input.validate())
+            return this.inputs.reduce((isValid, input) => {
+
+                const isInputValidate = input.validate()
+
+                return isValid && isInputValidate /* якщо хоча б один раз false то всі наступні рази буде повертати  false */
+            }, true)
         },/* Метод буде проходити по всіх інпутах і буде визивати метод validate */
+
         reset() {
             return this.inputs.forEach(input => input.reset())
         }/*  Проходимся по кожному інпуту і говорим обнулитися */

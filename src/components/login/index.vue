@@ -1,5 +1,5 @@
 <template>
-    <Form @submit.prevent="handleSubmit">
+    <Form ref="form" @submit.prevent="handleSubmit">
         <CustomInput v-model="formData.email" name="email" :rules="emailRules" />
         <CustomInput v-model="formData.password" name="password" :rules="passwordRules" />
         <Button type="submit">Click me</Button>
@@ -40,8 +40,13 @@ export default {
     },
     methods: {
         handleSubmit() {
-            console.log(this.formData)
+            const isFormValid = this.$refs.form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
+            if (isFormValid) {
+                console.log(this.formData)
+
+            }
         }
+
     }
 }
 </script>
