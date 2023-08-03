@@ -1,14 +1,19 @@
 <template>
     <main class="login">
-        <LoginForm />
+        <AuthSection>
+            <LoginForm /><!-- Так як є slot в authSection, тоді можна вставляти всредину компоненти -->
+        </AuthSection>
+
     </main>
 </template>
 
 <script>
 import LoginForm from "../components/login"
+import AuthSection from "../components/auth/AuthSection.vue";
+
 export default {
     name: 'LoginPage',
-    components: { LoginForm }
+    components: { LoginForm, AuthSection }
 }
 </script>
 
