@@ -1,20 +1,22 @@
 <template>
     <main class="homepage">
-        <Container>
-            <ApartmentFilterForm class="apartments-filter" @submit="filter" />
-        </Container>
+        <SectionWithHeaderSpacer>
+            <Container>
+                <ApartmentFilterForm class="apartments-filter" @submit="filter" />
+            </Container>
 
-        <Container>
-            <p v-if="!filteredApartments.length">Nothing found</p>
-            <!-- //Дивиться якщо довжина не менше 0 тоді гасить компонент// -->
+            <Container>
+                <p v-if="!filteredApartments.length">Nothing found</p>
+                <!-- //Дивиться якщо довжина не менше 0 тоді гасить компонент// -->
 
-            <ApartmentsList v-else :items="filteredApartments">
-                <template v-slot:apartment="{ apartment }">
-                    <ApartmentsItem :key="apartment.id" :id="apartment.id" :descr="apartment.descr"
-                        :rating="apartment.rating" :price="apartment.price" :imgSrc="apartment.imgUrl" />
-                </template>
-            </ApartmentsList>
-        </Container>
+                <ApartmentsList v-else :items="filteredApartments">
+                    <template v-slot:apartment="{ apartment }">
+                        <ApartmentsItem :key="apartment.id" :id="apartment.id" :descr="apartment.descr"
+                            :rating="apartment.rating" :price="apartment.price" :imgSrc="apartment.imgUrl" />
+                    </template>
+                </ApartmentsList>
+            </Container>
+        </SectionWithHeaderSpacer>
     </main>
 </template>
 
@@ -29,12 +31,13 @@ import ApartmentsItem from "../components/apartment/ApartmentsItem"
 import ApartmentFilterForm from "../components/apartment/ApartmentFilterForm.vue";
 import Container from "../components/shared/Container.vue";
 import { getApartmentsList } from "@/services/apartments_service";
+import SectionWithHeaderSpacer from "@/components/shared/SectionWithHeaderSpacer.vue";
 
 
 export default {
 
     name: "App",
-    components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container },
+    components: { ApartmentsList, ApartmentsItem, ApartmentFilterForm, Container, SectionWithHeaderSpacer },
     data() {
         return {
             apartments: [],
