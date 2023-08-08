@@ -1,20 +1,24 @@
 <template>
-    <Form ref="form" @submit.prevent="handleSubmit">
-        <CustomInput v-model="formData.email" name="email" :rules="emailRules" />
-        <CustomInput v-model="formData.password" name="password" :rules="passwordRules" />
-        <Button type="submit">Click me</Button>
-    </Form>
+    <AuthContainer>
+        <h1>Login</h1>
+        <Form ref="form" @submit.prevent="handleSubmit">
+            <CustomInput v-model="formData.email" name="email" :rules="emailRules" />
+            <CustomInput v-model="formData.password" name="password" :rules="passwordRules" />
+            <Button type="submit">Click me</Button>
+        </Form>
+    </AuthContainer>
 </template>
 
 <script>
-import Form from '../shared/form'
-import CustomInput from '../shared/CustomInput.vue'
-import Button from '../shared/Button.vue'
+import Form from '../../shared/form'
+import CustomInput from '../../shared/CustomInput.vue'
+import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
+import AuthContainer from '../AuthContainer.vue'
 
 export default {
     name: 'LoginComponent',
-    components: { Form, CustomInput, Button },
+    components: { Form, CustomInput, Button, AuthContainer },
     data() {
         return {
             formData: {
