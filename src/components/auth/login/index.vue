@@ -1,10 +1,10 @@
 <template>
-    <AuthContainer>
-        <h1>Login</h1>
-        <Form ref="form" @submit.prevent="handleSubmit">
-            <CustomInput v-model="formData.email" name="email" :rules="emailRules" />
-            <CustomInput v-model="formData.password" name="password" :rules="passwordRules" />
-            <Button type="submit">Click me</Button>
+    <AuthContainer class="login">
+        <MainTitle class="login__title">Login</MainTitle>
+        <Form ref="form" class="login__form" @submit.prevent="handleSubmit">
+            <CustomInput v-model="formData.email" name="email" :rules="emailRules" class="login__input" />
+            <CustomInput v-model="formData.password" name="password" :rules="passwordRules" class="login__input" />
+            <Button type="submit" class="login__btn">Click me</Button>
         </Form>
     </AuthContainer>
 </template>
@@ -15,10 +15,11 @@ import CustomInput from '../../shared/CustomInput.vue'
 import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
+import MainTitle from '../../shared/MainTitle.vue'
 
 export default {
     name: 'LoginComponent',
-    components: { Form, CustomInput, Button, AuthContainer },
+    components: { Form, CustomInput, Button, AuthContainer, MainTitle },
     data() {
         return {
             formData: {
@@ -55,4 +56,25 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.login {
+    &__title {
+        text-align: center;
+    }
+
+    &__form {
+        display: block;
+        flex-direction: column;
+    }
+
+    &__input {
+        margin-bottom: 20px;
+        width: 100%;
+    }
+
+    &__btn {
+        margin-top: 15px;
+        width: 100%;
+    }
+}
+</style>

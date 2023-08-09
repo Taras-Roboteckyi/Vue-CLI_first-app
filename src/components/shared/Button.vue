@@ -20,7 +20,7 @@ export default {
 .btn {
   display: inline-block;
   font-size: 18px;
-  background: #f44336;
+  background: #FF662D;
   color: #fff;
   cursor: pointer;
   min-width: 220px;
