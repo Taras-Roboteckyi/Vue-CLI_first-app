@@ -2,9 +2,11 @@
     <AuthContainer class="login">
         <MainTitle class="login__title">Login</MainTitle>
         <Form ref="form" class="login__form" @submit.prevent="handleSubmit">
-            <CustomInput v-model="formData.email" name="email" :rules="emailRules" class="login__input" />
-            <CustomInput v-model="formData.password" name="password" :rules="passwordRules" class="login__input" />
-            <Button type="submit" class="login__btn">Click me</Button>
+            <CustomInput v-model="formData.email" placeholder="Email" name="email" :rules="emailRules"
+                class="login__input" />
+            <CustomInput v-model="formData.password" type="password" placeholder="Password" name="password"
+                :rules="passwordRules" class="login__input" />
+            <Button type="submit" class="login__btn">Login</Button>
         </Form>
     </AuthContainer>
 </template>
@@ -16,6 +18,7 @@ import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
 import MainTitle from '../../shared/MainTitle.vue'
+import { loginUser } from '../../../services/auth_service'
 
 export default {
     name: 'LoginComponent',
@@ -40,14 +43,19 @@ export default {
             return [this.rules.isRequired, this.rules.emailValidation]
         },
         passwordRules() {
-            return [this.rules.isRequired, this.rules.passwordValidation]
+            return [this.rules.isRequired, /* this.rules.passwordValidation */] /* Забераєм валідацію пароля  на логін сторінці*/
         }
     },
     methods: {
-        handleSubmit() {
+        async handleSubmit() {
             const isFormValid = this.$refs.form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
             if (isFormValid) {
-                console.log(this.formData)
+                try {
+                    const { data } = await loginUser(this.formData) /* забираєм дані з GET запиту в auth.service */
+                    console.log("data", data)
+                } catch (error) {
+                    console.log("error", error)
+                }
 
             }
         }
