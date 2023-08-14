@@ -1,12 +1,16 @@
 <template>
-    <AuthContainer class="login">
-        <MainTitle class="login__title">Login</MainTitle>
-        <Form ref="form" class="login__form" @submit.prevent="handleSubmit">
+    <AuthContainer class="registration">
+        <MainTitle class="registration__title">Login</MainTitle>
+        <Form ref="form" class="registration__form" @submit.prevent="handleSubmit">
+            <CustomInput v-model="formData.name" autocomplete="username" placeholder="Name" name="name" :rules="nameRules"
+                class="registration__input" />
             <CustomInput v-model="formData.email" autocomplete="email" placeholder="Email" name="email" :rules="emailRules"
-                class="login__input" />
+                class="registration__input" />
             <CustomInput v-model="formData.password" autocomplete="current-password" type="password" placeholder="Password"
-                name="password" :rules="passwordRules" class="login__input" />
-            <Button type="submit" class="login__btn">Login</Button>
+                name="password" :rules="passwordRules" class="registration__input" />
+            <CustomInput v-model="formData.password" autocomplete="current-password" type="password" placeholder="Password"
+                name="password" :rules="confirmPassword" class="registration__input" />
+            <Button type="submit" class="registration__btn">Registration</Button>
         </Form>
     </AuthContainer>
 </template>
@@ -21,11 +25,12 @@ import MainTitle from '../../shared/MainTitle.vue'
 import { loginUser } from '../../../services/auth_service'
 
 export default {
-    name: 'LoginComponent',
+    name: 'RegistrationForm',
     components: { Form, CustomInput, Button, AuthContainer, MainTitle },
     data() {
         return {
             formData: {
+                name: '',
                 email: '',
                 password: ''
             }
@@ -39,11 +44,20 @@ export default {
                 isRequired
             }
         },
+        nameRules() {
+            return [this.rules.isRequired]
+        },
         emailRules() {
             return [this.rules.isRequired, this.rules.emailValidation]
         },
         passwordRules() {
-            return [this.rules.isRequired, /* this.rules.passwordValidation */] /* Забераєм валідацію пароля  на логін сторінці*/
+            return [this.rules.isRequired, this.rules.passwordValidation]
+        },
+        confirmPassword() {
+            return [(val) => ({
+                hasPassword: val === this.formData.password, /*Провіряєм на чи юзер вводить другий раз пароль правильно  */
+                message: 'Password mismatch'
+            })]
         }
     },
     methods: {
@@ -65,7 +79,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.login {
+.registration {
     &__title {
         text-align: center;
     }
