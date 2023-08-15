@@ -7,6 +7,7 @@ import HomePage from "./pages/HomePage";
 import ApartmentPage from "./pages/Apartment";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/Login";
+import RegistrationPage from "./pages/Registration";
 
 //Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
     path: "/login", //створюєм  маршрут //
     component: LoginPage,
     name: "login-page",
+  },
+  {
+    path: "/registration", //створюєм  маршрут //
+    component: RegistrationPage,
+    name: "registration-page",
   },
   {
     path: "*", //такий роутер підходить до любого шляху і спрацьовує коли не відпрацював ні один із цих верхніх роутів//

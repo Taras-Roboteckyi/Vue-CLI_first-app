@@ -8,8 +8,8 @@
                 class="registration__input" />
             <CustomInput v-model="formData.password" autocomplete="current-password" type="password" placeholder="Password"
                 name="password" :rules="passwordRules" class="registration__input" />
-            <CustomInput v-model="formData.password" autocomplete="current-password" type="password" placeholder="Password"
-                name="password" :rules="confirmPassword" class="registration__input" />
+            <CustomInput v-model="formData.confirmPassword" autocomplete="current-password" type="password"
+                placeholder="Confirm password" name="password" :rules="confirmPassword" class="registration__input" />
             <Button type="submit" class="registration__btn">Registration</Button>
         </Form>
     </AuthContainer>
@@ -22,7 +22,7 @@ import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
 import MainTitle from '../../shared/MainTitle.vue'
-import { loginUser } from '../../../services/auth_service'
+import { registerUser } from '../../../services/auth_service'
 
 export default {
     name: 'RegistrationForm',
@@ -32,7 +32,8 @@ export default {
             formData: {
                 name: '',
                 email: '',
-                password: ''
+                password: '',
+                confirmPassword: ''
             }
         }
     },
@@ -55,7 +56,7 @@ export default {
         },
         confirmPassword() {
             return [(val) => ({
-                hasPassword: val === this.formData.password, /*Провіряєм на чи юзер вводить другий раз пароль правильно  */
+                hasPassed: val === this.formData.password, /*Провіряєм на чи юзер вводить другий раз пароль правильно  */
                 message: 'Password mismatch'
             })]
         }
@@ -63,9 +64,10 @@ export default {
     methods: {
         async handleSubmit() {
             const isFormValid = this.$refs.form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
+
             if (isFormValid) {
                 try {
-                    const { data } = await loginUser(this.formData) /* забираєм дані з GET запиту в auth.service */
+                    const { data } = await registerUser(this.formData) /* забираєм дані з GET запиту в auth.service */
                     console.log("data", data)
                 } catch (error) {
                     console.log("error", error)

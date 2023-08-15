@@ -1,7 +1,7 @@
 <template>
     <main class="registration">
         <AuthSection>
-            <!-- Так як є slot в authSection, тоді можна вставляти всредину компоненти -->
+            <RegistrationForm /><!-- Так як є slot в authSection, тоді можна вставляти всредину компоненти -->
         </AuthSection>
 
     </main>
@@ -9,10 +9,11 @@
 
 <script>
 import AuthSection from "../components/auth/AuthSection.vue";
+import RegistrationForm from "../components/auth/registration"
 
 export default {
     name: 'RegistrationPage',
-    components: { AuthSection }
+    components: { AuthSection, RegistrationForm }
 }
 </script>
 
