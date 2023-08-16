@@ -14,6 +14,8 @@ export const emailValidation = (val) => ({
 });
 
 export const passwordValidation = (val) => ({
-  hasPassed: /^(?=.*[A-Za-z])(?=.*[\d])[a-zA-Z0-9]{7,256}$/.test(val),
+  hasPassed: /^(?=.*[A-Za-z])(?=.*[\d])[a-zA-Z0-9][a-zA-Z0-9]{7,256}$/.test(
+    val
+  ),
   message: "The password must contain one number and one symbol",
 });
