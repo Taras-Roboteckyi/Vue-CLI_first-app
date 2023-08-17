@@ -63,12 +63,14 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            const isFormValid = this.$refs.form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
+            const { form } = this.$refs
+            const isFormValid = form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
             const { name, email, password } = this.formData
             if (isFormValid) {
                 try {
                     const { data } = await registerUser({ name, email, password }) /* забираєм дані з GET запиту в auth.service */
                     console.log("data", data)
+                    form.reset()
                 } catch (error) {
                     console.log("error", error)
                 }

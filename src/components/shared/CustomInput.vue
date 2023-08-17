@@ -1,8 +1,9 @@
 <template>
     <div class="wrapper-input">
-        <input v-on="listeners" v-bind="$attrs" class="custom-input"
+        <input v-on="listeners" v-bind="$attrs" :value="value" @blur="bluerHandler" class="custom-input"
             :class="!isValid && 'custom-input--error'"><!-- //Можливість байндити клас і
         достукатися до нього...КРУТО!!!             v-bind="$attrs" - відповідає за всі атрибути які будуть передаватися компоненту-->
+        <!-- :value=value щоб достукатись до значення інпута і ресетнути форму -->
         <span v-if="!isValid" class="custom-input__error">{{ error }}</span>
     </div>
 </template>
@@ -13,7 +14,8 @@ export default {
     data() {
         return {
             isValid: true,
-            error: ''
+            error: '',
+            isFirstInput: true/* Цей прапорець вказує на те що юзер зробив перший раз фокус. Коли зробиться подія bluer ми буде міняти значення на false */
         }
     },
     inject: {
@@ -46,6 +48,7 @@ export default {
     },
     watch: {
         value() {
+            if (this.isFirstInput) return
             this.validate()
             /* console.log(value) */ //В консолі відобрається  значення при ввденні в інпуті !Круто!!!
         }
@@ -77,8 +80,19 @@ export default {
 
             return this.isValid;
         },
+        bluerHandler() {
+            /* метод для того щоб після заповнення форми не вискакувала валідація на фо */
+            if (this.isFirstInput) {
+                this.validate()
+            }
+            this.isFirstInput = false
+        },
+
         reset() {
-            this.$emit('input', '')
+            this.isFirstInput = true,
+
+                this.isValid = true,
+                this.$emit('input', '')
         }/* Метод буде емітити подію інпут з пустим значенням */
     }
 }
