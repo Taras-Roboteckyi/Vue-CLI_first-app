@@ -9,25 +9,25 @@
 <script>
 export default {
     name: 'CircleLoader',
-    /*   props: {
-          width: {
-              type: [Number, String],
-              default: 50,
-          },
-          height: {
-              type: [Number, String],
-              default: 50,
-          },
-          color: {
-              type: String,
-              default: '#fff',
-          },
-      },
-      computed: {
-          style() {
-              return `stroke: ${this.color};`;
-          },
-      }, */
+    props: {
+        width: {
+            type: [Number, String],
+            default: 50,
+        },
+        height: {
+            type: [Number, String],
+            default: 50,
+        },
+        color: {
+            type: String,
+            default: '#fff',
+        },
+    },
+    computed: {
+        style() {
+            return `stroke: ${this.color};`;
+        },
+    },
 };
 </script>
 
