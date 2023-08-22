@@ -1,9 +1,12 @@
 <template>
-  <button v-on="$listeners" v-bind:type="type" :class="{
+  <button v-on="$listeners" v-bind:type="type" :disabled="loading" :class="{
     btn: true, 'btn--outlined': outlined //Застосували пропс для класу
   }">
-    <CircleLoader width="40" height="40" />
-    <slot></slot>
+    <CircleLoader v-if="loading" width="40" height="40" />
+    <span class="btn__content" :class="contentStyles">
+      <slot></slot>
+    </span>
+
   </button>
 </template>
 
@@ -15,8 +18,17 @@ export default {
   components: { CircleLoader },
   props: {
     type: { type: String, default: "button" },
-    outlined: { type: Boolean, default: false }
+    outlined: { type: Boolean, default: false },
+    loading: { type: Boolean, default: false }
   },
+  computed: {
+    contentStyles() {
+      return {
+        'btn__computed--hidden': this.loading /* додаєм клас hidden якщо loading = true */
+      }
+    }
+
+  }
 };
 </script>
 
@@ -36,6 +48,11 @@ export default {
     margin-left: 10px;
   }
 
+  &__content {
+    &--hidden {
+      opacity: 0;
+    }
+  }
 
 }
 </style>
