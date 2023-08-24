@@ -6,7 +6,7 @@
                 class="login__input" />
             <CustomInput v-model="formData.password" autocomplete="current-password" type="password" placeholder="Password"
                 name="password" :rules="passwordRules" class="login__input" />
-            <Button type="submit" class="login__btn">Login</Button>
+            <Button type="submit" class="login__btn" :loading="loading">Login</Button>
         </Form>
     </AuthContainer>
 </template>
@@ -25,6 +25,7 @@ export default {
     components: { Form, CustomInput, Button, AuthContainer, MainTitle },
     data() {
         return {
+            loading: false,
             formData: {
                 email: '',
                 password: ''
@@ -51,10 +52,13 @@ export default {
             const isFormValid = this.$refs.form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
             if (isFormValid) {
                 try {
+                    this.loading = true
                     const { data } = await loginUser(this.formData) /* забираєм дані з GET запиту в auth.service */
                     console.log("data", data)
                 } catch (error) {
                     console.log("error", error)
+                } finally {
+                    this.loading = false
                 }
 
             }

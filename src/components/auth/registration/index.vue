@@ -10,7 +10,7 @@
                 name="password" :rules="passwordRules" class="registration__input" />
             <CustomInput v-model="formData.confirmPassword" autocomplete="current-password" type="password"
                 placeholder="Confirm password" name="password" :rules="confirmPassword" class="registration__input" />
-            <Button type="submit" class="registration__btn">Registration</Button>
+            <Button type="submit" class="registration__btn" :loading="loading">Registration</Button>
         </Form>
     </AuthContainer>
 </template>
@@ -29,6 +29,7 @@ export default {
     components: { Form, CustomInput, Button, AuthContainer, MainTitle },
     data() {
         return {
+            loading: false,
             formData: {
                 name: '',
                 email: '',
@@ -68,11 +69,14 @@ export default {
             const { name, email, password } = this.formData
             if (isFormValid) {
                 try {
+                    this.loading = true
                     const { data } = await registerUser({ name, email, password }) /* забираєм дані з GET запиту в auth.service */
                     console.log("data", data)
                     form.reset()
                 } catch (error) {
                     console.log("error", error)
+                } finally {
+                    this.loading = false
                 }
 
             }

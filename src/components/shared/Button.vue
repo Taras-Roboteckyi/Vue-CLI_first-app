@@ -19,12 +19,12 @@ export default {
   props: {
     type: { type: String, default: "button" },
     outlined: { type: Boolean, default: false },
-    loading: { type: Boolean, default: false }
+    loading: { type: Boolean, default: true }
   },
   computed: {
     contentStyles() {
       return {
-        'btn__computed--hidden': this.loading /* додаєм клас hidden якщо loading = true */
+        'btn__content--hidden': this.loading /* додаєм клас hidden якщо loading = true */
       }
     }
 
