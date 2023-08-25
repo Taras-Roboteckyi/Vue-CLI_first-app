@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <notifications /><!-- group="foo" - використовується якщо є декілька нотифікашок різного типу -->
+    <Notifications />
     <div class="content">
       <AppHeader />
       <router-view></router-view><!-- //Додаєм роутер до нашого App// -->
@@ -14,19 +14,13 @@
 
 import AppHeader from "./components/Header.vue"
 import AppFooter from "./components/Footer.vue"
-
+import Notifications from "./components/notifications";
 
 export default {
 
   name: "App",
-  components: { AppHeader, AppFooter },
-  mounted() {
-    this.$notify({
+  components: { AppHeader, AppFooter, Notifications },
 
-      title: 'Important message',
-      text: 'Hello user! This is a notification!'
-    });
-  }
 }
 
 

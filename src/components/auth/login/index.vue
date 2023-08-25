@@ -56,7 +56,11 @@ export default {
                     const { data } = await loginUser(this.formData) /* забираєм дані з GET запиту в auth.service */
                     console.log("data", data)
                 } catch (error) {
-                    console.log("error", error)
+                    this.$notify({
+                        type: 'error',
+                        title: 'An error has occurred',
+                        text: error.message
+                    });
                 } finally {
                     this.loading = false
                 }
