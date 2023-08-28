@@ -20,6 +20,9 @@ export default {
 
   name: "App",
   components: { AppHeader, AppFooter, Notifications },
+  mounted() {
+    console.log(this.$store.state.userName)
+  }
 
 }
 
