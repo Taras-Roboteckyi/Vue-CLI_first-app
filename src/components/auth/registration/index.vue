@@ -67,6 +67,7 @@ export default {
             const { form } = this.$refs
             const isFormValid = form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
             const { name, email, password } = this.formData
+
             if (isFormValid) {
                 try {
                     this.loading = true
@@ -75,8 +76,10 @@ export default {
                     console.log("dadta", data)
                     this.$store.commit('setUserData', user) /* передаєм в store дані через мутацію */
                     this.$store.commit('setToken', token) /* передаєм в store дані через мутацію */
+
+                    this.$router.push({ name: 'homepage' }) /* при проходжені реєстрації редиректимся на головну сторінку */
                     console.log("state", this.$store.state)
-                    form.reset()
+                    form.reset()/* Очищаєм поля після входу */
                 } catch (error) {
 
                     this.$notify({
