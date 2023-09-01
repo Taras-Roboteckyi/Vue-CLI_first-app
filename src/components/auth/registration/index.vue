@@ -22,7 +22,7 @@ import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
 import MainTitle from '../../shared/MainTitle.vue'
-import { registerUser } from '../../../services/auth_service'
+
 
 export default {
     name: 'RegistrationForm',
@@ -71,15 +71,18 @@ export default {
             if (isFormValid) {
                 try {
                     this.loading = true
-                    const { data } = await registerUser({ name, email, password }) /* забираєм дані з GET запиту в auth.service */
-                    const { user, token } = data
-                    console.log("dadta", data)
-                    this.$store.commit('setUserData', user) /* передаєм в store дані через мутацію */
-                    this.$store.commit('setToken', token) /* передаєм в store дані через мутацію */
+                    /* const { data } = await registerUser({ name, email, password }) */ /* забираєм дані з GET запиту в auth.service */
+                    /* const { user, token } = data
+                    console.log("dadta", data) */
+                    /* this.$store.commit('setUserData', user) */ /* передаєм в store дані через мутацію */
+                    /* this.$store.commit('setToken', token) */ /* передаєм в store дані через мутацію */
+
+                    await this.$store.dispatch('registration', { name, email, password }) /* так набагато простіше передавати через action запити */
 
                     this.$router.push({ name: 'homepage' }) /* при проходжені реєстрації редиректимся на головну сторінку */
                     console.log("state", this.$store.state)
                     form.reset()/* Очищаєм поля після входу */
+
                 } catch (error) {
 
                     this.$notify({

@@ -18,7 +18,7 @@ import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
 import MainTitle from '../../shared/MainTitle.vue'
-import { loginUser } from '../../../services/auth_service'
+
 
 export default {
     name: 'LoginComponent',
@@ -56,12 +56,15 @@ export default {
             if (isFormValid) {
                 try {
                     this.loading = true
-                    const { data } = await loginUser(this.formData) /* забираєм дані з GET запиту в auth.service */
-                    const { user, token } = data
+                    /* const { data } = await loginUser(this.formData) */ /* забираєм дані з GET запиту в auth.service */
+                    /*  const { user, token } = data */
 
-                    this.$store.commit('setUserData', user) /* передаєм в store дані через мутацію */
-                    this.$store.commit('setToken', token) /* передаєм в store дані через мутацію */
+                    /* this.$store.commit('setUserData', user) */ /* передаєм в store дані через мутацію */
+                    /*  this.$store.commit('setToken', token) */ /* передаєм в store дані через мутацію */
                     /* console.log("state", this.$store.state) */
+
+                    await this.$store.dispatch('login', this.formData)/* так набагато простіше передавати через action запити */
+
                     this.$router.push({ name: 'homepage' }) /* при проходжені логіна редиректимся на головну сторінку */
                     form.reset() /* Очищаєм поля після входу */
 
