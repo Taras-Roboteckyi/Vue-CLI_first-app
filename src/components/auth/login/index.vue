@@ -63,7 +63,7 @@ export default {
                     /*  this.$store.commit('setToken', token) */ /* передаєм в store дані через мутацію */
                     /* console.log("state", this.$store.state) */
 
-                    await this.$store.dispatch('login', this.formData)/* так набагато простіше передавати через action запити */
+                    await this.$store.dispatch('auth/login', this.formData)/* так набагато простіше передавати через action запити */
 
                     this.$router.push({ name: 'homepage' }) /* при проходжені логіна редиректимся на головну сторінку */
                     form.reset() /* Очищаєм поля після входу */

@@ -77,7 +77,7 @@ export default {
                     /* this.$store.commit('setUserData', user) */ /* передаєм в store дані через мутацію */
                     /* this.$store.commit('setToken', token) */ /* передаєм в store дані через мутацію */
 
-                    await this.$store.dispatch('registration', { name, email, password }) /* так набагато простіше передавати через action запити */
+                    await this.$store.dispatch('auth/registration', { name, email, password }) /* так набагато простіше передавати через action запити */
 
                     this.$router.push({ name: 'homepage' }) /* при проходжені реєстрації редиректимся на головну сторінку */
                     console.log("state", this.$store.state)

@@ -3,7 +3,7 @@
         <CustomSelect :items="cities" v-model="city" class="form__select" />
         <CustomInput v-model="price" placeholder="Price from" error-message="Мust not be empty" :rules="rules" />
         <!--  :rules="[(val) => !!val]" - перевіряє чи пусте поле чи не пусте-->
-        <SubmitButton class="form__submit" type="submit">Selection of housing</SubmitButton>
+        <SubmitButton class="form__submit" type="submit" :loading="loading">Selection of housing</SubmitButton>
     </form>
 </template>
 
@@ -17,6 +17,7 @@ export default {
     components: { CustomSelect, CustomInput, SubmitButton },
     data() {
         return {
+            loading: false,
             price: '',
             city: ''
         }
@@ -32,7 +33,9 @@ export default {
     },
     methods: {
         handleSubmit() {
+
             this.$emit('submit', { city: this.city, price: this.price, })
+
         }
     }
 
