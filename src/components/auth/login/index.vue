@@ -18,6 +18,7 @@ import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
 import MainTitle from '../../shared/MainTitle.vue'
+import { mapActions } from 'vuex'
 
 
 export default {
@@ -48,6 +49,8 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ['login']), /* Застосовуєм методи vuex замість this.store */
+
         async handleSubmit() {
             const { form } = this.$refs
             const isFormValid = form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
@@ -63,7 +66,7 @@ export default {
                     /*  this.$store.commit('setToken', token) */ /* передаєм в store дані через мутацію */
                     /* console.log("state", this.$store.state) */
 
-                    await this.$store.dispatch('auth/login', this.formData)/* так набагато простіше передавати через action запити */
+                    await this.login(this.formData)/* так набагато простіше передавати через action запити/ Скоротили запис через mapActions */
 
                     this.$router.push({ name: 'homepage' }) /* при проходжені логіна редиректимся на головну сторінку */
                     form.reset() /* Очищаєм поля після входу */

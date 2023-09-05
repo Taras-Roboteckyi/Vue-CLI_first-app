@@ -39,7 +39,7 @@ export default {
       commit("setToken", token);
     },
 
-    async registration({ commit }, payload) {
+    async registerUser({ commit }, payload) {
       const { data } = await registerUser(
         payload
       ); /* робим await так як registerUser у нас promise */

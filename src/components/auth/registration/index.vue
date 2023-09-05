@@ -22,6 +22,7 @@ import Button from '../../shared/Button.vue'
 import { emailValidation, passwordValidation, isRequired } from '@/utils/validationRules'
 import AuthContainer from '../AuthContainer.vue'
 import MainTitle from '../../shared/MainTitle.vue'
+import { mapActions } from 'vuex'
 
 
 export default {
@@ -63,6 +64,8 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ['registerUser']), /* Застосовуєм методи vuex замість this.store */
+
         async handleSubmit() {
             const { form } = this.$refs
             const isFormValid = form.validate()/* так ми можем визивати методи з дочерного копонента в батьківському компоненті. По суті це вважається антипатерном, але для форми це дуже зручно, форма визве метод validate і перевіре кожне поле на валідацію. */
@@ -77,7 +80,7 @@ export default {
                     /* this.$store.commit('setUserData', user) */ /* передаєм в store дані через мутацію */
                     /* this.$store.commit('setToken', token) */ /* передаєм в store дані через мутацію */
 
-                    await this.$store.dispatch('auth/registration', { name, email, password }) /* так набагато простіше передавати через action запити */
+                    await this.registerUser({ name, email, password }) /* так набагато простіше передавати через action запити */
 
                     this.$router.push({ name: 'homepage' }) /* при проходжені реєстрації редиректимся на головну сторінку */
                     console.log("state", this.$store.state)
