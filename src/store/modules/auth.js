@@ -15,6 +15,12 @@ export default {
   namespaced: true,
 
   state: { ...initialState },
+
+  getters: {
+    isLoggedIn(state) {
+      return Boolean(state.token);
+    },
+  },
   /* Створюєм мутації (редюсери в React) */
   mutations: {
     setUserData(state, userData /* userData - це payload */) {
