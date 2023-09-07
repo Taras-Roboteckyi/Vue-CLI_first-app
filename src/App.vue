@@ -12,14 +12,21 @@
 
 <script>
 
-import AppHeader from "./components/Header.vue"
+import AppHeader from "./components/header"
 import AppFooter from "./components/Footer.vue"
 import Notifications from "./components/notifications";
+import { mapGetters } from "vuex";
 
 export default {
 
   name: "App",
   components: { AppHeader, AppFooter, Notifications },
+  computed: {
+    ...mapGetters('auth', ['isLoggedIn']) /* Так застосовуються гетери з state */
+  },
+  mounted() {
+    console.log(this.isLoggedIn)/* Тепер можна достукатися до гетера isLoggedIn */
+  }
 
 }
 
