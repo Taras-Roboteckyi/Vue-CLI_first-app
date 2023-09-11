@@ -21,7 +21,7 @@
                 <router-link class="account-actions__link" :to="{ name: 'my-orders' }">My orders</router-link>
             </li>
             <li class="account-actions__item">
-                <button class="account-actions__logout">
+                <button @click="logout" class="account-actions__logout">
                     Exit
                 </button>
             </li>
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
     name: 'AccountActions',
     data() {
@@ -38,12 +40,16 @@ export default {
         }
     },
     methods: {
+        ...mapActions('auth', ['logout']), /* тепер є доступ до акшена logout із state */
+
         open() {
             this.isOpen = true
         },
+
         close() {
             this.isOpen = false
         },
+
         toggle() {
             this.isOpen = !this.isOpen
         }

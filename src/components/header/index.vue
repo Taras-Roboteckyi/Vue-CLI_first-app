@@ -5,8 +5,10 @@
                 <router-link to="/"><!-- //Перенаправляє на головну сторінку -->
                     <Logo />
                 </router-link>
-                <AuthActions />
-                <AccountActions />
+                <AccountActions v-if="isLoggedIn" />
+
+                <AuthActions v-else />
+
             </div>
 
         </Container>
@@ -18,10 +20,14 @@ import Container from '../shared/Container.vue';
 import Logo from '../Logo.vue'
 import AuthActions from './AuthActions.vue';
 import AccountActions from './AccountActions.vue';
+import { mapGetters } from 'vuex';
 
 export default {
     name: 'HeaderApp',
-    components: { Container, Logo, AuthActions, AccountActions }
+    components: { Container, Logo, AuthActions, AccountActions },
+    computed: {
+        ...mapGetters('auth', ['isLoggedIn'])
+    }
 }
 </script>
 

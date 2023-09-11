@@ -1,7 +1,7 @@
 import Vuex from "vuex";
 import Vue from "vue";
 
-import { loginUser, registerUser } from "../../services/auth_service";
+import { loginUser, registerUser, logout } from "../../services/auth_service";
 
 Vue.use(Vuex); //Реєструєм хранилище Vuex//
 
@@ -30,6 +30,11 @@ export default {
     setToken(state, token /* token - це payload */) {
       state.token = token;
     },
+    clearUserData(state) {
+      Object.assign(state, {
+        ...initialState,
+      }); /* Прикольно чистим state через   Object.assign. Ми перезаписали state і не втратили його реактивність*/
+    },
   },
   actions: {
     /* action використовуються при асинхронних запитах, а мутації не можуть бути асинхронні */
@@ -53,6 +58,11 @@ export default {
 
       commit("setUserData", user);
       commit("setToken", token);
+    },
+    async logout({ commit }) {
+      await logout(); /* робим await так як loginUser у нас promise */
+
+      commit("clearUserData"); /* Визиваєм мутацію очистки state */
     },
   },
 };
