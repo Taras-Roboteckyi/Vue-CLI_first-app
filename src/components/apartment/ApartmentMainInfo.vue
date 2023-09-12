@@ -6,15 +6,20 @@
         </div>
         <img :src="apartment.imgUrl" alt="" class="apartment-main-info__photo">
         <p class="apartment-main-info__description">{{ apartment.descr }}</p>
+        <div class="apartment-main-info__btn">
+            <Button>Book a room</Button>
+        </div>
+
     </article>
 </template>
 
 <script>
 import StarRating from '../StarRating.vue'
+import Button from '../shared/Button.vue'
 
 export default {
     name: 'ApartmentMainInfo',
-    components: { StarRating },
+    components: { StarRating, Button },
     props: {
         apartment: {
             type: Object,
@@ -45,6 +50,11 @@ export default {
     &__description {
         line-height: 1.3;
         margin-top: 30px;
+    }
+
+    &__btn {
+        margin-top: 20px;
+        text-align: center;
     }
 }
 </style>
