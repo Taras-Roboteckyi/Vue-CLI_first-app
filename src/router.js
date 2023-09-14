@@ -8,6 +8,7 @@ import ApartmentPage from "./pages/Apartment";
 import ErrorPage from "./pages/ErrorPage";
 import LoginPage from "./pages/Login";
 import RegistrationPage from "./pages/Registration";
+import MyOrdersPage from "./pages/MyOrders";
 
 //Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
@@ -28,6 +29,11 @@ const routes = [
     path: "/apartment/:id", //створюєм динамічний маршрут //
     component: ApartmentPage,
     name: "apartment", //Система nameрнів, для того щоб дати імя кожному роуту///
+  },
+  {
+    path: "/my-orders", //створюєм динамічний маршрут //
+    component: MyOrdersPage,
+    name: "my-orders", //Система nameрнів, для того щоб дати імя кожному роуту///
   },
   {
     path: "/login", //створюєм  маршрут //

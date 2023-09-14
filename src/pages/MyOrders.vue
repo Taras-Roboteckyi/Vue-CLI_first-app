@@ -21,4 +21,11 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.my-orders-page {
+    &__content {
+        max-width: 730px;
+        margin: 0 auto;
+    }
+}
+</style>
