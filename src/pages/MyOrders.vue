@@ -51,7 +51,7 @@ export default {
 .my-orders-page {
     &__content {
         max-width: 730px;
-        margin: 0 auto;
+        margin: 0 auto 100px;
     }
 }
 </style>
