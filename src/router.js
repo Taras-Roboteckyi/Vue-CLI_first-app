@@ -1,8 +1,6 @@
 //Тут прописуються всі настройки роутінга///////
 import VueRouter from "vue-router";
 
-import Bar from "./pages/BarApp";
-import Foo from "./pages/FooApp";
 import HomePage from "./pages/HomePage";
 import ApartmentPage from "./pages/Apartment";
 import ErrorPage from "./pages/ErrorPage";
@@ -13,14 +11,6 @@ import MyOrdersPage from "./pages/MyOrders";
 //Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
   {
-    path: "/Foo", //Задаєм шляхи які ми хочеш щоб переходило по сторінці///
-    component: Foo,
-  },
-  {
-    path: "/Bar", //Задаєм шляхи які ми хочеш щоб переходило по сторінці///
-    component: Bar,
-  },
-  {
     path: "/", //Задаєм кореневий шлях, щоб переходило по сторінці///
     component: HomePage,
     name: "homepage",
@@ -29,16 +19,25 @@ const routes = [
     path: "/apartment/:id", //створюєм динамічний маршрут //
     component: ApartmentPage,
     name: "apartment", //Система nameрнів, для того щоб дати імя кожному роуту///
+    meta: {
+      requiresAuth: true,
+    }, //Робим захищений роут.Тобто якщо користувач не залогінений, то користувач не може зайти на сторінку
   },
   {
     path: "/my-orders", //створюєм динамічний маршрут //
     component: MyOrdersPage,
     name: "my-orders", //Система nameрнів, для того щоб дати імя кожному роуту///
+    meta: {
+      requiresAuth: true,
+    }, //Робим захищений роут.Тобто якщо користувач не залогінений, то користувач не може зайти на сторінку
   },
   {
     path: "/login", //створюєм  маршрут //
     component: LoginPage,
     name: "login-page",
+    meta: {
+      hideForAuth: true,
+    }, //Робим захищений роут.Тобто якщо користувач зареєстрований, то не показувати ці сторінки
   },
   {
     path: "/registration", //створюєм  маршрут //
@@ -54,4 +53,7 @@ const routes = [
 
 const router = new VueRouter({ routes, mode: "history" });
 
+//Є глобальний хук який називається beforeEach, який спрацьовує кожен раз коли є перехід з роута на інший роут. Він приймає три параметри to, from i next
+router.beforeEach((to, from, next) => {});
+//to - означає на яку сторінку переходить роут. from - означає з якої сторінки. Понятно що перший раз загружаємся то from у нас не існує. І next - самий головний, якщо ми його не застосуєм то не відбудеться перехід з  роута на інший.
 export default router;
