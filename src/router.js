@@ -8,6 +8,8 @@ import LoginPage from "./pages/Login";
 import RegistrationPage from "./pages/Registration";
 import MyOrdersPage from "./pages/MyOrders";
 
+import store from "./store";
+
 //Щоб роутер працював, потрібно на основі компонентів створити масив роутерів////
 const routes = [
   {
@@ -54,6 +56,25 @@ const routes = [
 const router = new VueRouter({ routes, mode: "history" });
 
 //Є глобальний хук який називається beforeEach, який спрацьовує кожен раз коли є перехід з роута на інший роут. Він приймає три параметри to, from i next
-router.beforeEach((to, from, next) => {});
+router.beforeEach((to, from, next) => {
+  const isLoggedIn = store.getters["auth/isLoggedIn"];
+
+  //Інфа з офіційної документації, для провірки на meta
+  if (to.matched.some((record) => record.meta.requiresAuth)) {
+    //провірка проходить по всім роутам і дивиться якщо одни співпавший роут requiresAuth
+    if (!isLoggedIn) {
+      next({ name: "login-page" });
+    }
+  }
+
+  if (to.matched.some((record) => record.meta.hideForAuth)) {
+    //провірка проходить по всім роутам і дивиться якщо одни співпавший роут requiresAuth
+    if (isLoggedIn) {
+      next({ name: "homepage" });
+    }
+  }
+
+  next();
+});
 //to - означає на яку сторінку переходить роут. from - означає з якої сторінки. Понятно що перший раз загружаємся то from у нас не існує. І next - самий головний, якщо ми його не застосуєм то не відбудеться перехід з  роута на інший.
 export default router;
