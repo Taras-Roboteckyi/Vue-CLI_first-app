@@ -21,7 +21,7 @@
                 <router-link class="account-actions__link" :to="{ name: 'my-orders' }">My orders</router-link>
             </li>
             <li class="account-actions__item">
-                <button @click="logout" class="account-actions__logout">
+                <button @click="handleLogout" class="account-actions__logout">
                     Exit
                 </button>
             </li>
@@ -52,6 +52,25 @@ export default {
 
         toggle() {
             this.isOpen = !this.isOpen
+        },
+
+        async handleLogout() {
+            try {
+                await this.logout()
+
+                this.$notify({
+                    type: 'success',
+                    title: 'You are logged out',
+
+                })
+
+            } catch (error) {
+                this.$notify({
+                    type: 'error',
+                    title: 'Exit error',
+                    text: error.message
+                })
+            }
         }
     }
 }
