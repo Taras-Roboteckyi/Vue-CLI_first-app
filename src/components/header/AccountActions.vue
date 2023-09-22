@@ -55,8 +55,14 @@ export default {
         },
 
         async handleLogout() {
+            //Робим такий ХАК, щоб коли виходиш з профілю юзера перекидувало на сторінку логіна
             try {
                 await this.logout()
+                const { requiresAuth } = this.$route.meta
+
+                if (requiresAuth) {
+                    this.$router.push({ name: "login-page" })
+                }
 
                 this.$notify({
                     type: 'success',
