@@ -6,5 +6,5 @@ module.exports = defineConfig({
 module.exports = {
   /* publicPath: "/Vue-CLI_first-app/", */
   publicPath:
-    process.env.NODE_ENV === "production" ? "/" : "/Vue-CLI_first-app/",
+    process.env.NODE_ENV === "production" ? "/Vue-CLI_first-app/" : "/",
 };
